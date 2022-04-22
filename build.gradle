@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id "com.github.johnrengelman.shadow" version "7.1.2"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation("net.dv8tion:JDA:5.0.0-alpha.10"){
+        exclude module: 'opus-java'
+    }
+    implementation 'org.json:json:20220320'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'me.bartosz1.catbot.CatBot'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+shadowJar {
+    minimize()
+}
