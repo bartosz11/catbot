@@ -7,12 +7,15 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.utils.data.DataObject;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
 public class CatCommand implements Command {
 
     private final Request req = new Request.Builder().url("https://api.mythicalkitten.com/cats").build();
+    private static final Logger LOGGER = LoggerFactory.getLogger(CatCommand.class);
 
     @Override
     public void handle(SlashCommandInteractionEvent event) {
@@ -29,7 +32,7 @@ public class CatCommand implements Command {
             embed.addField("Error", "No cat pic this time, sorry.", false);
             e.printStackTrace();
         }
-        event.getHook().editOriginalEmbeds(embed.build()).queue();
+        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:"+event.getMember().getId()+" CMD: cat ON C:"+event.getChannel().getId()+"/G:"+event.getGuild().getId()));
         embed.clear();
     }
 }

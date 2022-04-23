@@ -6,6 +6,8 @@ import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
 import net.dv8tion.jda.api.utils.data.DataObject;
 import okhttp3.OkHttpClient;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.io.File;
@@ -16,13 +18,10 @@ import java.util.concurrent.TimeUnit;
 
 public class CatBot {
 
-    //
-    //TODO LOGBACK EVERYWHERE
-    //
-
     private final ShardManager bot;
-    public static final OkHttpClient http = new OkHttpClient.Builder().callTimeout(3000, TimeUnit.SECONDS).connectTimeout(3000, TimeUnit.SECONDS).readTimeout(3000, TimeUnit.SECONDS).build();
-    private final SlashCommandListener cmdMgr = new SlashCommandListener();
+    public static final OkHttpClient http = new OkHttpClient.Builder().callTimeout(3, TimeUnit.SECONDS).connectTimeout(3, TimeUnit.SECONDS).readTimeout(3, TimeUnit.SECONDS).build();
+    private static final Logger LOGGER = LoggerFactory.getLogger(CatBot.class);
+
     public static void main(String[] args) throws Exception {
         new CatBot();
     }
@@ -35,14 +34,15 @@ public class CatBot {
             PrintWriter writer = new PrintWriter(configFile);
             writer.println("{\"token\":\"REPLACE_THIS_WITH_YOUR_TOKEN\"}");
             writer.close();
-            System.out.println("Config file created. Please fill it with required data.");
+            LOGGER.info("Config file created");
             System.exit(0);
         }
         config = DataObject.fromJson(new FileReader(configFile));
         if (config.isNull("token")) {
-            System.out.println("ERROR: Token not found in config file.");
+            LOGGER.error("Token not found in config file");
             System.exit(1);
         }
+        SlashCommandListener cmdMgr = new SlashCommandListener();
         bot = DefaultShardManagerBuilder.createLight(config.getString("token")).setShardsTotal(-1).addEventListeners(cmdMgr, new ReadyListener(this, cmdMgr)).build();
     }
 
