@@ -20,7 +20,7 @@ public class ReadyListener extends ListenerAdapter {
 
     @Override
     public void onReady(ReadyEvent event) {
-        catbot.getBot().getGuildById(773481544337719306L).updateCommands()
+        catbot.getBot().getShards().get(0).updateCommands()
                 .addCommands(Commands.slash("cat","Get a cat picture."))
                 .addCommands(Commands.slash("dog","Get a dog picture."))
                 .addCommands(Commands.slash("fox","Get a fox picture."))
