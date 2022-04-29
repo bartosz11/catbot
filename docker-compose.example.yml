@@ -1,0 +1,12 @@
+---
+version: "3"
+
+services:
+  catbot:
+    container_name: catbot
+    image: bartosz11/catbot
+    restart: unless-stopped
+    environment:
+        # Timezone used in logs
+        TZ: Europe/London
+        CATBOT_TOKEN: REPLACE_THIS_WITH_YOUR_TOKEN

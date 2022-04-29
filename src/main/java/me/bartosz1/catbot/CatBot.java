@@ -27,17 +27,20 @@ public class CatBot {
     }
 
     public CatBot() throws IOException, LoginException {
-        DataObject config;
+        DataObject config = DataObject.empty();
         File configFile = new File("config.json");
-        if (!configFile.exists()) {
-            configFile.createNewFile();
-            PrintWriter writer = new PrintWriter(configFile);
-            writer.println("{\"token\":\"REPLACE_THIS_WITH_YOUR_TOKEN\"}");
-            writer.close();
-            LOGGER.info("Config file created");
-            System.exit(0);
+        if ( System.getenv("CATBOT_TOKEN") == null || System.getenv("CATBOT_TOKEN").isEmpty()) {
+            if (!configFile.exists()) {
+                configFile.createNewFile();
+                PrintWriter writer = new PrintWriter(configFile);
+                writer.println("{\"token\":\"REPLACE_THIS_WITH_YOUR_TOKEN\"}");
+                writer.close();
+                LOGGER.info("Config file created");
+                System.exit(0);
+           } else config = DataObject.fromJson(new FileReader(configFile));
+        } else {
+            config.put("token", System.getenv("CATBOT_TOKEN"));
         }
-        config = DataObject.fromJson(new FileReader(configFile));
         if (config.isNull("token")) {
             LOGGER.error("Token not found in config file");
             System.exit(1);

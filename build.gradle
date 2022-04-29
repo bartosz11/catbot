@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'me.bartosz1'
-version '1.0'
+version '1.1'
 
 repositories {
     mavenCentral()
@@ -16,6 +16,9 @@ dependencies {
     }
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
 }
+
+sourceCompatibility = 11
+targetCompatibility = 11
 
 test {
     useJUnitPlatform()
@@ -32,4 +35,5 @@ jar {
 
 shadowJar {
     minimize()
+    archiveFileName = 'catbot.jar'
 }
