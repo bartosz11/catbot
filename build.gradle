@@ -28,9 +28,6 @@ jar {
     manifest {
         attributes 'Main-Class': 'me.bartosz1.catbot.CatBot'
     }
-    from {
-        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    }
 }
 
 shadowJar {
