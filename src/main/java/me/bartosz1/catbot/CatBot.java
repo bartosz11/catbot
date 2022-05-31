@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 public class CatBot {
 
     private final ShardManager bot;
-    public static final OkHttpClient http = new OkHttpClient.Builder().callTimeout(3, TimeUnit.SECONDS).connectTimeout(3, TimeUnit.SECONDS).readTimeout(3, TimeUnit.SECONDS).build();
+    public static final OkHttpClient http = new OkHttpClient.Builder().callTimeout(5, TimeUnit.SECONDS).build();
     private static final Logger LOGGER = LoggerFactory.getLogger(CatBot.class);
 
     public static void main(String[] args) throws Exception {
