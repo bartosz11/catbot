@@ -13,7 +13,7 @@ import java.io.IOException;
 
 public class PepsiCommand implements Command {
 
-    private final Request req = new Request.Builder().url("https://api.shadowcat.club/pic.php").build();
+    private final Request req = new Request.Builder().url("https://api.pepsi.pics/pic.php").build();
     private static final Logger LOGGER = LoggerFactory.getLogger(PepsiCommand.class);
 
     @Override
@@ -24,7 +24,7 @@ public class PepsiCommand implements Command {
         try {
             Response resp = CatBot.http.newCall(req).execute();
             embed.setTitle("Pepsi", resp.body().string());
-            embed.setFooter("Powered by shadowcat.club | Picture doesn't load? Click the title!");
+            embed.setFooter("Powered by api.pepsi.pics | Picture doesn't load? Click on the title!");
             embed.setImage(resp.body().string());
         } catch (IOException e) {
             embed.addField("Error", "No pepsi pic this time, sorry.", false);
