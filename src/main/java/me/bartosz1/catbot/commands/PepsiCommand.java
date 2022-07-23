@@ -23,9 +23,10 @@ public class PepsiCommand implements Command {
         embed.setColor(0x453a59);
         try {
             Response resp = CatBot.http.newCall(req).execute();
-            embed.setTitle("Pepsi", resp.body().string());
+            String url = resp.body().string();
+            embed.setTitle("Pepsi", url);
             embed.setFooter("Powered by api.pepsi.pics | Picture doesn't load? Click on the title!");
-            embed.setImage(resp.body().string());
+            embed.setImage(url);
         } catch (IOException e) {
             embed.addField("Error", "No pepsi pic this time, sorry.", false);
             e.printStackTrace();
