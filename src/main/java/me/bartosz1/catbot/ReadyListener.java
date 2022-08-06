@@ -27,7 +27,7 @@ public class ReadyListener extends ListenerAdapter {
                 .addCommands(Commands.slash("owl","Get an owl picture."))
                 .addCommands(Commands.slash("bird","Get a bird picture."))
                 .addCommands(Commands.slash("duck","Get a duck picture."))
-                .addCommands(Commands.slash("pepsi","Check out shadowcat.club!"))
+                .addCommands(Commands.slash("pepsi","Check out pepsi.pics!"))
                 .addCommands(Commands.slash("shibe","Get a shibe picture."))
                 .addCommands(Commands.slash("ping", "Pong!"))
                 .addCommands(Commands.slash("help", "Show list of commands"))
