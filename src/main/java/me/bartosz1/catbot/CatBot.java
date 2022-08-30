@@ -1,7 +1,5 @@
 package me.bartosz1.catbot;
 
-import me.bartosz1.catbot.commands.CatCommand;
-import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.sharding.DefaultShardManagerBuilder;
 import net.dv8tion.jda.api.sharding.ShardManager;
 import net.dv8tion.jda.api.utils.data.DataObject;
@@ -29,7 +27,7 @@ public class CatBot {
     public CatBot() throws IOException, LoginException {
         DataObject config = DataObject.empty();
         File configFile = new File("config.json");
-        if ( System.getenv("CATBOT_TOKEN") == null || System.getenv("CATBOT_TOKEN").isEmpty()) {
+        if (System.getenv("CATBOT_TOKEN") == null || System.getenv("CATBOT_TOKEN").isEmpty()) {
             if (!configFile.exists()) {
                 configFile.createNewFile();
                 PrintWriter writer = new PrintWriter(configFile);
@@ -37,7 +35,7 @@ public class CatBot {
                 writer.close();
                 LOGGER.info("Config file created");
                 System.exit(0);
-           } else config = DataObject.fromJson(new FileReader(configFile));
+            } else config = DataObject.fromJson(new FileReader(configFile));
         } else {
             config.put("token", System.getenv("CATBOT_TOKEN"));
         }

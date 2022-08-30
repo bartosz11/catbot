@@ -1,6 +1,5 @@
 package me.bartosz1.catbot;
 
-import me.bartosz1.catbot.commands.CatCommand;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
@@ -10,13 +9,13 @@ public class SlashCommandListener extends ListenerAdapter {
 
     private final HashMap<String, Command> commands = new HashMap<>();
 
-    public void onSlashCommandInteraction(SlashCommandInteractionEvent event){
-        if (commands.containsKey(event.getName())){
+    public void onSlashCommandInteraction(SlashCommandInteractionEvent event) {
+        if (commands.containsKey(event.getName())) {
             commands.get(event.getName()).handle(event);
         }
     }
 
-    public void registerCommand(String name, Command command){
+    public void registerCommand(String name, Command command) {
         commands.put(name, command);
     }
 }

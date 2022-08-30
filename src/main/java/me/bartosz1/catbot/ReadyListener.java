@@ -7,11 +7,16 @@ import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 public class ReadyListener extends ListenerAdapter {
 
     private final CatBot catbot;
     private final SlashCommandListener cmdMgr;
     private static final Logger LOGGER = LoggerFactory.getLogger(ReadyListener.class);
+    private static final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(1);
 
     public ReadyListener(CatBot catbot, SlashCommandListener cmdMgr) {
         this.catbot = catbot;
@@ -21,14 +26,14 @@ public class ReadyListener extends ListenerAdapter {
     @Override
     public void onReady(ReadyEvent event) {
         catbot.getBot().getShards().get(0).updateCommands()
-                .addCommands(Commands.slash("cat","Get a cat picture."))
-                .addCommands(Commands.slash("dog","Get a dog picture."))
-                .addCommands(Commands.slash("fox","Get a fox picture."))
-                .addCommands(Commands.slash("owl","Get an owl picture."))
-                .addCommands(Commands.slash("bird","Get a bird picture."))
-                .addCommands(Commands.slash("duck","Get a duck picture."))
-                .addCommands(Commands.slash("pepsi","Check out pepsi.pics!"))
-                .addCommands(Commands.slash("shibe","Get a shibe picture."))
+                .addCommands(Commands.slash("cat", "Get a cat picture."))
+                .addCommands(Commands.slash("dog", "Get a dog picture."))
+                .addCommands(Commands.slash("fox", "Get a fox picture."))
+                .addCommands(Commands.slash("owl", "Get an owl picture."))
+                .addCommands(Commands.slash("bird", "Get a bird picture."))
+                .addCommands(Commands.slash("duck", "Get a duck picture."))
+                .addCommands(Commands.slash("pepsi", "Check out pepsi.pics!"))
+                .addCommands(Commands.slash("shibe", "Get a shibe picture."))
                 .addCommands(Commands.slash("ping", "Pong!"))
                 .addCommands(Commands.slash("help", "Show list of commands"))
                 .queue();
@@ -42,6 +47,7 @@ public class ReadyListener extends ListenerAdapter {
         cmdMgr.registerCommand("duck", new DuckCommand());
         cmdMgr.registerCommand("ping", new PingCommand());
         cmdMgr.registerCommand("help", new HelpCommand());
+        executorService.scheduleAtFixedRate(new PresenceUpdater(catbot.getBot()), 1, 60, TimeUnit.SECONDS);
         LOGGER.info("Bot is ready!");
     }
 }

@@ -32,7 +32,7 @@ public class DuckCommand implements Command {
             embed.addField("Error", "No duck pic this time, sorry.", false);
             e.printStackTrace();
         }
-        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:"+event.getMember().getId()+" CMD: duck ON C:"+event.getChannel().getId()+"/G:"+event.getGuild().getId()));
+        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:" + event.getMember().getId() + " CMD: duck ON C:" + event.getChannel().getId() + "/G:" + event.getGuild().getId()));
         embed.clear();
     }
 }

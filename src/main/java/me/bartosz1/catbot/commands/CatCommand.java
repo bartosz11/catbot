@@ -32,7 +32,7 @@ public class CatCommand implements Command {
             embed.addField("Error", "No cat pic this time, sorry.", false);
             e.printStackTrace();
         }
-        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:"+event.getMember().getId()+" CMD: cat ON C:"+event.getChannel().getId()+"/G:"+event.getGuild().getId()));
+        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:" + event.getMember().getId() + " CMD: cat ON C:" + event.getChannel().getId() + "/G:" + event.getGuild().getId()));
         embed.clear();
     }
 }

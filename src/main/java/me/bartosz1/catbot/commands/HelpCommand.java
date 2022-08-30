@@ -17,6 +17,6 @@ public class HelpCommand implements Command {
         embed.setTitle("List of commands");
         embed.addField("Animal pictures", "``/bird`` ``/cat`` ``/dog`` ``/duck`` ``/fox`` ``/owl`` ``/pepsi`` ``/shibe``", false);
         embed.addField("Other", "``/help`` ``/ping``", false);
-        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:"+event.getMember().getId()+" CMD: help ON C:"+event.getChannel().getId()+"/G:"+event.getGuild().getId()));
+        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:" + event.getMember().getId() + " CMD: help ON C:" + event.getChannel().getId() + "/G:" + event.getGuild().getId()));
     }
 }

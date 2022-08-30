@@ -22,8 +22,8 @@ public class PingCommand implements Command {
             long gatewayPing = response.getJDA().getGatewayPing();
             embed.setTitle(":ping_pong: Pong!");
             embed.setColor(0x48fc42);
-            embed.setDescription(":tools: **API: "+apiPing+"ms**\n:left_right_arrow: **Gateway: "+gatewayPing+"ms**");
-            response.editMessageEmbeds(embed.build()).queue(resp -> LOGGER.info("U:"+event.getMember().getId()+" CMD: ping ON C:"+event.getChannel().getId()+"/G:"+event.getGuild().getId()));
+            embed.setDescription(":tools: **API: " + apiPing + "ms**\n:left_right_arrow: **Gateway: " + gatewayPing + "ms**");
+            response.editMessageEmbeds(embed.build()).queue(resp -> LOGGER.info("U:" + event.getMember().getId() + " CMD: ping ON C:" + event.getChannel().getId() + "/G:" + event.getGuild().getId()));
         });
         embed.clear();
     }

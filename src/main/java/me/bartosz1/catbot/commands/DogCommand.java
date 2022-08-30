@@ -32,7 +32,7 @@ public class DogCommand implements Command {
             embed.addField("Error", "No dog pic this time, sorry.", false);
             e.printStackTrace();
         }
-        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:"+event.getMember().getId()+" CMD: dog ON C:"+event.getChannel().getId()+"/G:"+event.getGuild().getId()));
+        event.getHook().editOriginalEmbeds(embed.build()).queue(resp -> LOGGER.info("U:" + event.getMember().getId() + " CMD: dog ON C:" + event.getChannel().getId() + "/G:" + event.getGuild().getId()));
         embed.clear();
     }
 }
