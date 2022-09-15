@@ -14,7 +14,7 @@ dependencies {
     implementation("net.dv8tion:JDA:5.0.0-alpha.18"){
         exclude module: 'opus-java'
     }
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.1'
 }
 
 sourceCompatibility = 11
