@@ -26,7 +26,7 @@ jobs:
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
         with:
-          arguments: bootJar --no-daemon
+          arguments: shadowJar --no-daemon
       - uses: actions/upload-artifact@v2
         with:
           name: catbot.jar
@@ -46,5 +46,5 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: bartosz11/bmonitord:v2
+          tags: bartosz11/catbot:latest
           platforms: linux/amd64,linux/arm64/v8,linux/arm/v7
