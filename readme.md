@@ -10,7 +10,7 @@ A simple bot which can send you some animal pictures.
 
 ## Building
 
-Java 11 is recommended for building and running this bot. <br/>
+Java 17 is required for building and running this bot. <br/>
 First, clone this repo: <br/>
 ``git clone https://github.com/bartosz11/catbot.git`` <br/>
 Then build it with Gradle: <br/>

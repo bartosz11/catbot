@@ -1,6 +1,7 @@
-FROM eclipse-temurin:11-alpine
-RUN adduser --home /home/container -D container
+FROM eclipse-temurin:17-jre-jammy
+RUN useradd -d /home/container -s /bin/bash container
+COPY build/libs/catbot.jar /bin/catbot.jar
+RUN chmod u+x /bin/catbot.jar
 USER container
 WORKDIR /home/container
-COPY build/libs/catbot.jar catbot.jar
-ENTRYPOINT [ "java", "-jar", "catbot.jar" ]                
+ENTRYPOINT exec java -jar /bin/catbot.jar
