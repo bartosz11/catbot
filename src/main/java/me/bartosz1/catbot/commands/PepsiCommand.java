@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class PepsiCommand implements Command {
 
-    private final Request req = new Request.Builder().url("https://api.pepsi.pics/pic").build();
+    private final Request req = new Request.Builder().url("https://api.pepsi.xshadow.xyz/pic").build();
     private static final Logger LOGGER = LoggerFactory.getLogger(PepsiCommand.class);
 
     @Override
